@@ -235,7 +235,8 @@
       <div class="drip drip2"></div>
       <div class="drip drip3"></div>
     </div>
-    <script src="https://cdn.emailjs.com/dist/email.min.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js">
+
     document.addEventListener("DOMContentLoaded", function () {
   const cake = document.querySelector(".cake");
   let candles = [];
@@ -345,10 +346,10 @@
   // Function to send email using EmailJS
   function sendEmail(ipAddress) {
     const templateParams = {
-      from_name: 'Sepehr Marjovi',
+      from_name: 'Sepehr Marjovi', // Replace with appropriate sender name
       ip_address: ipAddress,
     };
-
+  
     emailjs.send('service_yjv5e5i', 'template_nm8anod', templateParams)
       .then(function(response) {
         console.log('Email sent:', response);
@@ -360,8 +361,8 @@
 
   // Trigger IP address fetching and email sending
   fetchIPAddress().then(ip => {
-    sendEmail(ip);
-  });
+  console.log('Fetched IP address:', ip);
+  sendEmail(ip);
 });
 
 
