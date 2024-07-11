@@ -14,9 +14,9 @@
         background-color: #333;
       }
 
-      .candle-count-display {
+      .message-display {
         text-align: center;
-        margin-top: 150px;
+        margin-top: 20px;
         margin-bottom: 20px;
         font-family: 'Arial', sans-serif;
         font-size: 20px;
@@ -31,9 +31,28 @@
         border: 2px solid #553C13;
       }
 
-      .candle-count-display span {
+      .message-display span {
         font-weight: bold;
         color: #AD030F;
+      }
+
+      .happy-birthday {
+        text-align: center;
+        margin-top: 50px;
+        font-family: 'Arial', sans-serif;
+        font-size: 30px;
+        color: #FFD700;
+        text-shadow: 0 0 10px #FF4500, 0 0 20px #FF4500, 0 0 30px #FF4500;
+        animation: glow 1s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 10px #FF4500, 0 0 20px #FF4500, 0 0 30px #FF4500;
+        }
+        to {
+          text-shadow: 0 0 20px #FF4500, 0 0 30px #FF4500, 0 0 40px #FF4500;
+        }
       }
 
       .cake {
@@ -200,8 +219,11 @@
     </style>
   </head>
   <body>
-    <div class="candle-count-display">
-      Candles on the Cake: <span id="candleCount">17</span>
+    <div class="message-display">
+      Blow on it a few times
+    </div>
+    <div class="happy-birthday">
+      Happy Birthday Iman
     </div>
     <div class="cake">
       <div class="plate"></div>
@@ -216,18 +238,10 @@
     <script>
   document.addEventListener("DOMContentLoaded", function () {
     const cake = document.querySelector(".cake");
-    const candleCountDisplay = document.getElementById("candleCount");
     let candles = [];
     let audioContext;
     let analyser;
     let microphone;
-
-    function updateCandleCount() {
-      const activeCandles = candles.filter(
-        (candle) => !candle.classList.contains("out")
-      ).length;
-      candleCountDisplay.textContent = activeCandles;
-    }
 
     function addCandle(left, top) {
       const candle = document.createElement("div");
@@ -241,7 +255,6 @@
 
       cake.appendChild(candle);
       candles.push(candle);
-      updateCandleCount();
     }
 
     // Add 17 candles at regular positions when the page loads
@@ -306,10 +319,6 @@
             blownOut++;
           }
         });
-      }
-
-      if (blownOut > 0) {
-        updateCandleCount();
       }
     }
 
